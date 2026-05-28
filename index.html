@@ -148,7 +148,7 @@ footer a{color:var(--azul-medio);text-decoration:none;}
 <!-- SPLASH -->
 <div id="splash">
   <div class="spl-logo">
-    <img src="logo_hospital.jpeg" alt="Logo Hospital Local ESE Puerto Asis">
+    <img src="logo_hospital.jpg" alt="Logo Hospital Local ESE Puerto Asis">
   </div>
   <h1>Capacitacion Sarampion 2026</h1>
   <p>Hospital Local ESE Puerto Asis - Putumayo</p>
@@ -211,7 +211,7 @@ footer a{color:var(--azul-medio);text-decoration:none;}
   <!-- HEADER -->
   <div class="app-header">
     <div class="hdr-logo">
-      <img src="logo_hospital.jpeg" alt="Logo Hospital Local ESE Puerto Asis">
+      <img src="logo_hospital.jpg" alt="Logo Hospital Local ESE Puerto Asis">
     </div>
     <div class="hdr-info">
       <div class="badge-hdr">Circular 000004 - INS Colombia - 2026</div>
@@ -657,7 +657,7 @@ function generarCertificado(){
   document.getElementById('resultado-postest').insertAdjacentHTML('beforeend',`
     <div style="margin-top:18px;" id="cert-final">
       <div class="cert-wrap">
-        <img src="logo_hospital.jpeg" alt="Logo Hospital" style="width:65px;height:65px;object-fit:contain;margin-bottom:8px;">
+        <img src="logo_hospital.jpg" alt="Logo Hospital" style="width:65px;height:65px;object-fit:contain;margin-bottom:8px;">
         <p style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-texto);">Hospital Local ESE Puerto Asis - Circular 000004 MSPS 2026</p>
         <h2>Certificado de Capacitacion</h2>
         <p style="font-size:0.85rem;color:var(--gris-texto);">Se certifica que</p>
@@ -687,22 +687,50 @@ async function enviarAGitHub(){
     aprobado:postestScore>=80?'SI':'NO',firma:firmaDataURL?'SI':'NO'};
   registros.push(registro);
   localStorage.setItem('sarampion_reg',JSON.stringify(registros));
-  if(!GH.TOKEN||GH.TOKEN==='TU_TOKEN_AQUI'){
-    console.warn('Token GitHub no configurado. Datos guardados solo localmente.');return;
-  }
-  const body=`## Registro de Capacitacion Sarampion 2026\n\n| Campo | Valor |\n|---|---|\n| **Nombre** | ${userData.nombre} |\n| **Cargo** | ${userData.cargo} |\n| **Servicio** | ${userData.servicio} |\n| **Email** | ${userData.email} |\n| **Fecha** | ${userData.fechaInicio} |\n| **Pre-test** | ${pretestScore}% |\n| **Post-test** | ${postestScore}% |\n| **Aprobado** | ${postestScore>=80?'SI':'NO'} |\n| **Firma digital** | ${firmaDataURL?'SI':'NO'} |\n\n---\n*Registrado automaticamente desde: Hospital Local ESE Puerto Asis*`;
+  enviarAGoogleForms();
+}
+
+function enviarAGoogleForms(){
   try{
-    const res=await fetch('https://api.github.com/repos/'+GH.OWNER+'/'+GH.REPO+'/issues',{
-      method:'POST',
-      headers:{'Authorization':'token '+GH.TOKEN,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
-      body:JSON.stringify({title:userData.nombre+' - '+userData.cargo+' - Post-test: '+postestScore+'% - '+new Date().toLocaleDateString('es-CO'),body,labels:['capacitacion-2026',postestScore>=80?'aprobado':'reprobado']})
+    const FORM_ID='1FAIpQLSdPRMxG5Zf0SyIPs9sAth1Ncr9F8LqgFtLIufJsTKaIbUZ5OA';
+    const url='https://docs.google.com/forms/d/e/'+FORM_ID+'/formResponse';
+    const iframe=document.createElement('iframe');
+    iframe.style.display='none';
+    iframe.name='gforms_hidden';
+    document.body.appendChild(iframe);
+    const form=document.createElement('form');
+    form.method='POST';
+    form.action=url;
+    form.target='gforms_hidden';
+    const campos={
+      'entry.276763522':userData.nombre||'',
+      'entry.2141152544':userData.cargo||'',
+      'entry.370652896':userData.servicio||'',
+      'entry.465622796':userData.email||'',
+      'entry.167916670':userData.fechaInicio||'',
+      'entry.1370402360':pretestScore+'%',
+      'entry.699904085':postestScore+'%',
+      'entry.2126902312':postestScore>=80?'SI':'NO',
+      'entry.504292367':firmaDataURL?'SI':'NO'
+    };
+    Object.entries(campos).forEach(([key,val])=>{
+      const input=document.createElement('input');
+      input.type='hidden';input.name=key;input.value=val;
+      form.appendChild(input);
     });
-    if(res.ok){
-      const data=await res.json();
-      registro.github_issue=data.number;registro.github_url=data.html_url;
-      localStorage.setItem('sarampion_reg',JSON.stringify(registros));
-    }
-  }catch(e){console.error('Error enviando a GitHub:',e);}
+    document.body.appendChild(form);
+    form.submit();
+    setTimeout(()=>{
+      try{document.body.removeChild(form);document.body.removeChild(iframe);}catch(e){}
+    },3000);
+    console.log('Registro enviado a Google Forms');
+  }catch(e){console.error('Error enviando a Google Forms:',e);}
+}
+
+function _unused(){
+  if(!GH.TOKEN||GH.TOKEN==='TU_TOKEN_AQUI'){
+    console.warn('Token GitHub no configurado.');return;
+  }
 }
 
 function toggleAdmin(){
@@ -797,23 +825,6 @@ setTimeout(()=>updateProgress(),2200);
 </script>
 </body>
 </html>
-
-   
- 
- 
- 
-     
-  
-
-
-
-
-  
-  
-
-
- 
-
 
 
 
