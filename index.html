@@ -368,7 +368,7 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </div>
     <div class="card mod-content" id="mod6" style="display:none">
       <div class="card-title">Modulo 6 - PAI, Vacunacion y Acciones Institucionales</div>
-      <div class="card-subtitle">Lineamientos Circular 000004 MSPS 2026 para IPS</div>
+      <div class="card-subtitle">Lineamientos Circular 004 MSPS 2026 para IPS</div>
       <div class="info-grid">
         <div class="info-item"><div class="info-label">SRP1 Colombia</div><div class="info-val">93% (meta 95% o mas)</div></div>
         <div class="info-item"><div class="info-label">SRP2 Colombia</div><div class="info-val">79% (meta 95% o mas)</div></div>
@@ -439,7 +439,7 @@ const PREGUNTAS_POSTEST = [
   {id:'q7',texto:'Nino de 7 meses viajara a Mexico (zona con brote). Medida vacunal?',opciones:['No vacunar antes de 12 meses','Dosis cero SR (6-11m), que NO reemplaza la dosis del esquema a los 12m','Dos dosis SRP con intervalo 4 semanas','Esperar a los 12 meses'],correcta:1,feedback:'La dosis cero SR puede darse a ninos de 6-11 meses antes de viajar a zona activa, minimo 15 dias de anticipacion. NO reemplaza la primera dosis del esquema a los 12 meses.'},
   {id:'q8',texto:'A que ficha SIVIGILA corresponde la notificacion de un caso sospechoso de SARAMPION?',opciones:['Ficha 700','Ficha 710','Ficha 720','Ficha 730'],correcta:1,feedback:'Sarampion: Ficha 730. Rubeola: Ficha 720. SRC: Ficha 730. Notificacion SUPER INMEDIATA desde la sospecha clinica.'},
   {id:'q9',texto:'Cual es el periodo de incubacion PROMEDIO del sarampion?',opciones:['3-5 dias','7-10 dias','14 dias (rango 7-21)','21-28 dias'],correcta:2,feedback:'Incubacion: 7-21 dias, promedio 14 dias. Dato clave para identificar el periodo de exposicion en la investigacion epidemiologica.'},
-  {id:'q10',texto:'En que plazo debe remitirse el informe preliminar al INS tras notificar un caso sospechoso?',opciones:['6 horas','24 horas','48 horas','5 dias'],correcta:2,feedback:'Segun Circular 000004: informe preliminar al INS en maximo 48 horas desde la notificacion, con acciones de control ejecutadas.'}
+  {id:'q10',texto:'En que plazo debe remitirse el informe preliminar al INS tras notificar un caso sospechoso?',opciones:['6 horas','24 horas','48 horas','5 dias'],correcta:2,feedback:'Segun Circular 004: informe preliminar al INS en maximo 48 horas desde la notificacion, con acciones de control ejecutadas.'}
 ];
 
 let userData={}, pretestAnswers={}, postestAnswers={};
@@ -658,12 +658,12 @@ function generarCertificado(){
     <div style="margin-top:18px;" id="cert-final">
       <div class="cert-wrap">
         <img src="logo_hospital.jpeg" alt="Logo Hospital" style="width:65px;height:65px;object-fit:contain;margin-bottom:8px;">
-        <p style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-texto);">Hospital Local ESE Puerto Asis - Circular 000004 MSPS 2026</p>
+        <p style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-texto);">Hospital Local ESE Puerto Asis - Circular 004 MSPS 2026</p>
         <h2>Certificado de Capacitacion</h2>
         <p style="font-size:0.85rem;color:var(--gris-texto);">Se certifica que</p>
         <div class="cert-nombre">${userData.nombre}</div>
         <p style="font-size:0.9rem;color:#2C3E50;margin:5px 0;"><strong>${userData.cargo}</strong> - ${userData.servicio}</p>
-        <p style="font-size:0.85rem;color:var(--gris-texto);max-width:360px;margin:10px auto;">Ha completado el <strong>Manual de Capacitacion en Sarampion y Rubeola 2026</strong>, en cumplimiento de la Circular 000004 del MSPS e INS Colombia.</p>
+        <p style="font-size:0.85rem;color:var(--gris-texto);max-width:360px;margin:10px auto;">Ha completado el <strong>Manual de Capacitacion en Sarampion y Rubeola 2026</strong>, en cumplimiento de la Circular 004 del MSPS e INS Colombia.</p>
         <p style="font-size:0.85rem;margin:6px 0;"><strong>Post-test: ${postestScore}% - Pre-test: ${pretestScore}%</strong></p>
         <div class="cert-firma-img"><p style="font-size:0.82rem;color:var(--verde);font-weight:600;">&#10003; Firma digital registrada</p></div>
         <p style="font-size:0.75rem;color:var(--gris-texto);margin-top:6px;">Fecha: ${fecha}</p>
