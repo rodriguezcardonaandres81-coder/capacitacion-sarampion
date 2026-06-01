@@ -140,8 +140,6 @@ label.field-label{display:block;font-size:0.78rem;font-weight:700;text-transform
 .sync-pending{background:#FFF3CD;color:#856404;}
 footer{text-align:center;padding:14px;font-size:0.7rem;color:var(--gris-texto);border-top:1px solid #EEE;margin-top:20px;background:#FAFAFA;border-radius:0 0 16px 16px;}
 footer a{color:var(--azul-medio);text-decoration:none;}
-
-/* ===== DICCIONARIO FLOTANTE ===== */
 #dict-fab{position:fixed;bottom:84px;right:82px;width:52px;height:52px;border-radius:50%;background:#1E8449;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:8000;box-shadow:var(--sombra-fuerte);font-size:1.3rem;transition:transform 0.2s,background 0.2s;}
 #dict-fab:hover{background:#145A32;transform:scale(1.08);}
 #dict-fab svg{width:24px;height:24px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
@@ -178,27 +176,27 @@ footer a{color:var(--azul-medio);text-decoration:none;}
 .dict-empty span{font-size:2rem;display:block;margin-bottom:8px;}
 .dict-footer{padding:10px 18px;border-top:1px solid #EEF;flex-shrink:0;text-align:center;}
 .dict-footer p{font-size:0.68rem;color:var(--gris-texto);}
-
+.img-clinica-wrap{margin:14px 0;background:#FFF9F0;border:2px solid #F0A040;border-radius:12px;padding:14px 16px;}
+.img-clinica-titulo{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#854F0B;margin-bottom:10px;}
+.img-clinica-foto{background:white;border-radius:8px;overflow:hidden;border:1px solid #DDE;}
+.img-clinica-foto img{width:100%;max-height:220px;object-fit:cover;display:block;}
+.img-clinica-desc{font-size:0.78rem;color:#5F5E5A;line-height:1.5;margin-top:4px;}
+.img-clinica-fuente{font-size:0.7rem;color:#888;margin-top:6px;}
 @media print{#admin-btn,#admin-panel,#firma-overlay,#dict-fab,#dict-panel,.modulos-nav,.btn-row,.progress-bar-wrap{display:none!important;}.cert-wrap{border:2px solid #333;}}
 </style>
 </head>
 <body>
 
-<!-- SPLASH -->
 <div id="splash">
-  <div class="spl-logo">
-    <img src="logo_hospital.jpeg" alt="Logo Hospital Local ESE Puerto Asís">
-  </div>
+  <div class="spl-logo"><img src="logo_hospital.jpeg" alt="Logo Hospital Local ESE Puerto Asís"></div>
   <h1>Capacitación Sarampión 2026</h1>
   <p>Hospital Local ESE Puerto Asís - Putumayo</p>
 </div>
 
-<!-- BOTÓN DICCIONARIO FLOTANTE -->
 <button id="dict-fab" onclick="toggleDiccionario()" title="Diccionario de términos" aria-label="Abrir diccionario de términos">
   <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="12" y1="7" x2="16" y2="7"/><line x1="12" y1="11" x2="16" y2="11"/></svg>
 </button>
 
-<!-- PANEL DICCIONARIO -->
 <div id="dict-panel" role="dialog" aria-label="Diccionario de términos">
   <div class="dict-hdr">
     <div class="dict-hdr-row">
@@ -217,15 +215,11 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </div>
   </div>
   <div id="dict-body"></div>
-  <div class="dict-footer">
-    <p>Circular 000004 MSPS/INS &bull; Protocolo Nacional de Vigilancia INS 2026</p>
-  </div>
+  <div class="dict-footer"><p>Circular 000004 MSPS/INS &bull; Protocolo Nacional de Vigilancia INS 2026</p></div>
 </div>
 
-<!-- ADMIN BTN -->
 <button id="admin-btn" onclick="toggleAdmin()" title="Panel Administrador">&#9881;&#65039;</button>
 
-<!-- ADMIN PANEL -->
 <div id="admin-panel">
   <div class="admin-wrap">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
@@ -243,22 +237,16 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     <div id="admin-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin-bottom:16px;"></div>
     <div class="admin-table-wrap">
       <table class="admin-table" id="admin-table">
-        <thead>
-          <tr><th>#</th><th>Nombre</th><th>Cargo</th><th>Servicio</th><th>Email</th><th>Fecha</th><th>Pre-test</th><th>Post-test</th><th>Aprobado</th><th>Firma</th><th>GitHub</th></tr>
-        </thead>
-        <tbody id="admin-tbody">
-          <tr><td colspan="11" style="text-align:center;color:var(--gris-texto);padding:20px;">Cargando datos...</td></tr>
-        </tbody>
+        <thead><tr><th>#</th><th>Nombre</th><th>Cargo</th><th>Servicio</th><th>Email</th><th>Fecha</th><th>Pre-test</th><th>Post-test</th><th>Aprobado</th><th>Firma</th><th>GitHub</th></tr></thead>
+        <tbody id="admin-tbody"><tr><td colspan="11" style="text-align:center;color:var(--gris-texto);padding:20px;">Cargando datos...</td></tr></tbody>
       </table>
     </div>
     <p style="font-size:0.73rem;color:var(--gris-texto);margin-top:10px;">
-      Registros en:
-      <a href="https://github.com/rodriguezcardonaandres81-coder/capacitacion-sarampion/issues" target="_blank" style="color:var(--azul-medio);">github.com/rodriguezcardonaandres81-coder/capacitacion-sarampion</a>
+      Registros en: <a href="https://github.com/rodriguezcardonaandres81-coder/capacitacion-sarampion/issues" target="_blank" style="color:var(--azul-medio);">github.com/rodriguezcardonaandres81-coder/capacitacion-sarampion</a>
     </p>
   </div>
 </div>
 
-<!-- FIRMA OVERLAY -->
 <div id="firma-overlay">
   <div class="firma-box">
     <h3>Firma Digital</h3>
@@ -273,14 +261,9 @@ footer a{color:var(--azul-medio);text-decoration:none;}
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
-
-  <!-- HEADER -->
   <div class="app-header">
-    <div class="hdr-logo">
-      <img src="logo_hospital.jpeg" alt="Logo Hospital Local ESE Puerto Asís">
-    </div>
+    <div class="hdr-logo"><img src="logo_hospital.jpeg" alt="Logo Hospital Local ESE Puerto Asís"></div>
     <div class="hdr-info">
       <div class="badge-hdr">Circular 000004 - INS Colombia - 2026</div>
       <h1>Capacitación: Sarampión y Rubéola</h1>
@@ -288,19 +271,16 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </div>
     <div class="hdr-autor">
       <p><strong style="color:white;">Andrés Rodríguez Cardona</strong></p>
-      <p>Epidemiólogo</p>
-      <p>3116366677</p>
+      <p>Epidemiólogo</p><p>3116366677</p>
       <a href="mailto:andrewcar27@hotmail.com">andrewcar27@hotmail.com</a>
     </div>
   </div>
 
-  <!-- PROGRESS -->
   <div class="progress-bar-wrap">
     <div class="steps-row" id="stepsRow"></div>
     <div class="progress-label" id="progressLabel">Inicio</div>
   </div>
 
-  <!-- S0: REGISTRO -->
   <div class="screen active" id="s0">
     <div class="card">
       <div class="card-title">&#128100; Datos del participante</div>
@@ -329,7 +309,6 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </footer>
   </div>
 
-  <!-- S1: PRE-TEST -->
   <div class="screen" id="s1">
     <div class="card">
       <div class="card-title">&#128203; PRE-TEST - Evaluación diagnóstica</div>
@@ -342,7 +321,6 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </div>
   </div>
 
-  <!-- S2: RESULTADO PRETEST -->
   <div class="screen" id="s2">
     <div class="card">
       <div class="card-title">&#128200; Resultado Pre-test</div>
@@ -351,9 +329,9 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </div>
   </div>
 
-  <!-- S3: MODULOS -->
   <div class="screen" id="s3">
     <div class="modulos-nav" id="modNav"></div>
+
     <div class="card mod-content" id="mod1">
       <div class="card-title">&#127758; Módulo 1 - Situación Epidemiológica 2025-2026</div>
       <div class="card-subtitle">Contexto del brote en las Américas y Colombia</div>
@@ -385,6 +363,32 @@ footer a{color:var(--azul-medio);text-decoration:none;}
           <tr><td><strong>Complicaciones</strong></td><td>Neumonía, encefalitis, ceguera, muerte</td><td>SRC: cataratas, sordera, cardiopatías (embarazo)</td></tr>
         </tbody>
       </table></div>
+
+      <!-- ===== CAMBIO 2: IMAGEN CLÍNICA ===== -->
+      <div class="img-clinica-wrap">
+        <p class="img-clinica-titulo">&#128248; Reconocimiento clínico — Exantema maculopapular y manchas de Koplik</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+          <div class="img-clinica-foto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Measles_rash_on_back%2C_child%2C_Philippines%2C_1979.jpg/480px-Measles_rash_on_back%2C_child%2C_Philippines%2C_1979.jpg"
+              alt="Exantema maculopapular del sarampión — imagen educativa CDC/OPS"
+              onerror="this.parentElement.innerHTML='<div style=\'padding:20px;text-align:center;font-size:0.78rem;color:#888;\'>Imagen no disponible<br>Ver Manual Visual OPS</div>'">
+            <p style="font-size:0.72rem;color:#5F5E5A;padding:6px 8px;margin:0;background:#FAFAFA;">Exantema maculopapular — progresión cefalocaudal</p>
+          </div>
+          <div class="img-clinica-foto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Koplik_spots_on_the_buccal_mucosa.jpg/480px-Koplik_spots_on_the_buccal_mucosa.jpg"
+              alt="Manchas de Koplik en mucosa bucal — signo patognomónico del sarampión"
+              onerror="this.parentElement.innerHTML='<div style=\'padding:20px;text-align:center;font-size:0.78rem;color:#888;\'>Imagen no disponible<br>Ver Manual Visual OPS</div>'">
+            <p style="font-size:0.72rem;color:#5F5E5A;padding:6px 8px;margin:0;background:#FAFAFA;">Manchas de Koplik — signo patognomónico (mucosa bucal)</p>
+          </div>
+        </div>
+        <p class="img-clinica-desc">
+          <strong style="color:var(--rojo-oscuro);">Exantema maculopapular:</strong> inicia en cara y cuello el día 5, se extiende cefalocaudalmente hacia tronco y extremidades en 2-3 días. Dura 3-7 días. &nbsp;|&nbsp;
+          <strong style="color:#854F0B;">Manchas de Koplik:</strong> puntos blancos (1-3 mm) sobre fondo eritematoso en mucosa bucal, frente a los molares. Aparecen 2-3 días ANTES del exantema — permiten diagnóstico precoz e inicio inmediato de medidas de control.
+        </p>
+        <p class="img-clinica-fuente">Fuentes: CDC / OPS — Imágenes de dominio público con fines educativos institucionales</p>
+      </div>
+      <!-- ===== FIN IMAGEN CLÍNICA ===== -->
+
       <div class="alerta"><strong>Manchas de Koplik:</strong> Signo patognomónico - puntos blancos sobre fondo rojizo en mucosa bucal. Aparecen 2-3 días antes del exantema. Permiten diagnóstico precoz.</div>
       <div class="alerta alerta-azul"><strong>SRC:</strong> Infección en primer trimestre - riesgo mayor 85% malformaciones graves. Notificación especial con Ficha 730.</div>
       <div class="btn-row"><button class="btn btn-outline" onclick="nextMod(1)">&#8592; Anterior</button><button class="btn btn-secondary" onclick="nextMod(3)">Siguiente &#8594;</button></div>
@@ -430,12 +434,7 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     <div class="card mod-content" id="mod5" style="display:none">
       <div class="card-title">&#128680; Módulo 5 - Notificación, Manejo y Aislamiento</div>
       <div class="card-subtitle">Acciones ante el caso sospechoso en la institución</div>
-      <div class="alerta"><strong>Tiempos críticos:</strong><br>
-        SIVIGILA: <strong>inmediata (misma jornada)</strong><br>
-        Investigación epidemiológica: máx. <strong>48 horas</strong><br>
-        Informe preliminar INS: máx. <strong>48 horas</strong><br>
-        Aislamiento: desde sospecha hasta <strong>4 días post-exantema</strong>
-      </div>
+      <div class="alerta"><strong>Tiempos críticos:</strong><br>SIVIGILA: <strong>inmediata (misma jornada)</strong><br>Investigación epidemiológica: máx. <strong>48 horas</strong><br>Informe preliminar INS: máx. <strong>48 horas</strong><br>Aislamiento: desde sospecha hasta <strong>4 días post-exantema</strong></div>
       <div class="paso"><div class="paso-num">1</div><div class="paso-contenido"><h4>Precauciones por vía aérea</h4><p>Habitación individual (presión negativa o puerta cerrada). N95/FFP2 para personal. Mascarilla quirúrgica para el paciente en traslados. Evitar sala de espera general.</p></div></div>
       <div class="paso"><div class="paso-num">2</div><div class="paso-contenido"><h4>Triage Diferencial</h4><p>Fiebre + rash → aislamiento inmediato. Interrogar antecedente de viaje internacional en los últimos 21 días. Mascarilla desde el primer contacto.</p></div></div>
       <div class="paso"><div class="paso-num azul">3</div><div class="paso-contenido"><h4>Vitamina A (niños 6-59 meses)</h4><p>Administrar INMEDIATAMENTE y repetir al día siguiente. Dosis: menos de 6m → 50.000 UI; 6-11m → 100.000 UI; 12m o más → 200.000 UI.</p></div></div>
@@ -462,7 +461,6 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </div>
   </div>
 
-  <!-- S4: POST-TEST -->
   <div class="screen" id="s4">
     <div class="card">
       <div class="card-title">&#9989; POST-TEST - Evaluación final</div>
@@ -475,39 +473,26 @@ footer a{color:var(--azul-medio);text-decoration:none;}
     </div>
   </div>
 
-  <!-- S5: RESULTADO FINAL -->
   <div class="screen" id="s5">
     <div class="card"><div id="resultado-postest"></div></div>
   </div>
-
 </div>
-
 <script>
-/* =============================================
-   CONFIGURACION GITHUB
-============================================= */
-const GH = {
-  TOKEN: '',
-  OWNER: 'rodriguezcardonaandres81-coder',
-  REPO: 'capacitacion-sarampion',
-  ADMIN_PASS: 'HospitalAsis2026'
-};
+const GH={TOKEN:'',OWNER:'rodriguezcardonaandres81-coder',REPO:'capacitacion-sarampion',ADMIN_PASS:'HospitalAsis2026'};
 
-/* =============================================
-   BANCO DE PREGUNTAS
-============================================= */
-const PREGUNTAS_PRETEST = [
+/* ===== CAMBIO 1: p6 reemplazada — definición caso sospechoso V/F (Circular 004) ===== */
+const PREGUNTAS_PRETEST=[
   {id:'p1',texto:'¿Cuál es el período de transmisibilidad del sarampión?',opciones:['Solo mientras dura el exantema','4 días antes hasta 4 días después del inicio del exantema','Solo durante la fiebre prodrómica','1 semana antes y 2 semanas después'],correcta:1,feedback:'El sarampión se transmite desde 4 días ANTES hasta 4 días DESPUÉS del inicio del exantema. La mayor infectividad ocurre 3 días antes del rash.'},
   {id:'p2',texto:'¿Cuál es el signo patognomónico del sarampión?',opciones:['Linfadenopatía retroauricular','Manchas de Koplik en mucosa bucal','Conjuntivitis purulenta bilateral','Erupción vesicular en palmas'],correcta:1,feedback:'Las manchas de Koplik son patognomónicas del sarampión. Aparecen 2-3 días antes del exantema en la mucosa bucal.'},
   {id:'p3',texto:'¿Hasta cuándo es válida la muestra de hisopado nasofaríngeo para sarampión?',opciones:['Hasta 7 días post-erupción','Hasta 14 días post-erupción','Hasta 30 días post-erupción','Solo primeras 48 horas'],correcta:1,feedback:'El hisopado nasofaríngeo puede obtenerse hasta 14 días post-erupción. El suero hasta 30 días y la orina hasta 10 días.'},
   {id:'p4',texto:'¿Quién es el ÚNICO autorizado para confirmar oficialmente un caso de sarampión en Colombia?',opciones:['Laboratorio clínico de la IPS','LSP departamental','LNR del INS','Secretaría Departamental de Salud'],correcta:2,feedback:'El Laboratorio Nacional de Referencia (LNR) del INS es el único autorizado para confirmar oficialmente casos de sarampión, rubéola o SRC en Colombia.'},
   {id:'p5',texto:'Niño de 8 meses con sarampión. ¿Cuál es la dosis de Vitamina A?',opciones:['50.000 UI','100.000 UI','200.000 UI','No se indica'],correcta:1,feedback:'Para niños de 6 a 11 meses: 100.000 UI de Vitamina A, inmediatamente al diagnóstico y repetida al día siguiente.'},
-  {id:'p6',texto:'¿Qué porcentaje de casos en las Américas 2025 NO estaban vacunados?',opciones:['45%','55%','78%','92%'],correcta:2,feedback:'Según la Alerta OPS de febrero 2026, el 78% de los casos no estaban vacunados, evidenciando la importancia de coberturas del 95% o más.'},
+  {id:'p6',texto:'VERDADERO o FALSO: Todo cuadro febril exantemático (no vesicular) en una persona con antecedente reciente de viaje internacional debe considerarse caso sospechoso de sarampión y rubéola (SR), y notificarse de manera SÚPER INMEDIATA al SIVIGILA.',opciones:['Verdadero','Falso'],correcta:0,feedback:'VERDADERO. Según la Circular Conjunta 000004 MSPS/INS (25 feb 2026): todo cuadro febril exantemático NO vesicular con antecedente de viaje internacional es caso sospechoso de SR y debe notificarse de manera SÚPER INMEDIATA a SIVIGILA, sin esperar confirmación de laboratorio.'},
   {id:'p7',texto:'¿Cuántos días máximo para enviar muestras al laboratorio procesador?',opciones:['24 horas','48 horas','5 días calendario','15 días'],correcta:2,feedback:'Las muestras deben remitirse en máximo 5 días calendario, según indicadores internacionales del INS.'},
   {id:'p8',texto:'¿Cuándo debe iniciarse el bloqueo de vacunación?',opciones:['Solo tras confirmación LNR','Cuando IgM resulte positiva','Desde el caso sospechoso, sin esperar confirmación, en primeras 72h','Solo si hay más de 3 casos'],correcta:2,feedback:'El bloqueo vacunal debe iniciarse DESDE LA IDENTIFICACIÓN DEL CASO SOSPECHOSO, sin esperar laboratorio, en las primeras 72 horas.'}
 ];
 
-const PREGUNTAS_POSTEST = [
+const PREGUNTAS_POSTEST=[
   {id:'q1',texto:'Paciente con fiebre 39.5°C, tos, ojos rojos, manchas rojas en cara hacia tronco, viaje a México hace 12 días. ¿Primera acción?',opciones:['Ordenar hemograma y esperar','Aislar, mascarilla, tomar muestras y notificar INMEDIATAMENTE a SIVIGILA','Indicar acetaminofén y citar en 48h','Remitir a otorrinolaringología'],correcta:1,feedback:'Ante sospecha de sarampión: AISLAR inmediatamente, tomar las 3 muestras simultáneas y notificar SÚPER INMEDIATO a SIVIGILA, sin esperar confirmación de laboratorio.'},
   {id:'q2',texto:'¿Qué tipo de hisopo está CONTRAINDICADO para muestra nasofaríngea en sarampión?',opciones:['Fibra sintética con eje plástico','Hisopo nasofaríngeo de eje flexible','Alginato de calcio o madera','Hisopo combinado garganta+nasofaríngeo'],correcta:2,feedback:'Los hisopos de alginato de calcio o ejes de madera inhiben las pruebas de PCR. Usar SOLO fibra sintética con eje de plástico.'},
   {id:'q3',texto:'IgM antiSarampión POSITIVA en embarazada de 8 semanas con exantema hace 5 días. ¿Conducta correcta?',opciones:['Confirmar como caso y cerrar','Confirmar solo con IgM','Solicitar segunda muestra de suero (10-21 días) y análisis molecular; completar algoritmo','Descartar por posible falso positivo del embarazo'],correcta:2,feedback:'IgM positiva SOLA no confirma ni descarta. Siempre: segunda muestra de suero (10-21 días), análisis molecular, notificar como sospechoso mientras se completa el algoritmo.'},
@@ -520,10 +505,7 @@ const PREGUNTAS_POSTEST = [
   {id:'q10',texto:'¿En qué plazo debe remitirse el informe preliminar al INS tras notificar un caso sospechoso?',opciones:['6 horas','24 horas','48 horas','5 días'],correcta:2,feedback:'Según Circular 004: informe preliminar al INS en máximo 48 horas desde la notificación, con acciones de control ejecutadas.'}
 ];
 
-/* =============================================
-   DICCIONARIO DE TÉRMINOS
-============================================= */
-const DICT_TERMINOS = [
+const DICT_TERMINOS=[
   {s:"UPGD",t:"inst",n:"Unidad Primaria Generadora de Datos",d:"Establecimiento de salud (pública o privada) que registra y reporta eventos de interés en salud pública al SIVIGILA. Es el primer eslabón de la cadena de vigilancia. Responsable de la notificación inmediata ante todo caso sospechoso de sarampión, rubéola o SRC."},
   {s:"SIVIGILA",t:"inst",n:"Sistema Nacional de Vigilancia en Salud Pública",d:"Plataforma del INS para la recolección, procesamiento y análisis de datos de eventos de interés en salud pública en Colombia. Operado por UPGD, EAPB, DTS y el INS. La notificación de sarampión/rubéola es SÚPER INMEDIATA."},
   {s:"INS",t:"inst",n:"Instituto Nacional de Salud",d:"Entidad adscrita al MSPS. Responsable de la referencia nacional de laboratorio, la vigilancia epidemiológica y la confirmación oficial de casos de enfermedades inmunoprevenibles en Colombia. Sede del LNR."},
@@ -554,31 +536,26 @@ const DICT_TERMINOS = [
   {s:"SRP / SR",t:"clin",n:"Vacuna Triple Viral / Doble Viral",d:"SRP: vacuna combinada contra Sarampión, Rubéola y Parotiditis. SR: vacuna doble contra Sarampión y Rubéola. Esquema PAI Colombia: SRP1 a los 12 meses, SRP2 a los 18 meses. Meta de cobertura: ≥95% en todos los municipios. Personal de salud sin dos dosis documentadas debe vacunarse gratuitamente según Circular 000004."},
 ];
 
-/* =============================================
-   LÓGICA GENERAL
-============================================= */
-let userData={}, pretestAnswers={}, postestAnswers={};
-let pretestScore=0, postestScore=0, firmaDataURL='';
-let currentScreen=0, currentMod=1, modsDone=[];
+let userData={},pretestAnswers={},postestAnswers={};
+let pretestScore=0,postestScore=0,firmaDataURL='';
+let currentScreen=0,currentMod=1,modsDone=[];
 let adminUnlocked=false;
 
 function updateProgress(){
-  const sr=document.getElementById('stepsRow'), lb=document.getElementById('progressLabel');
+  const sr=document.getElementById('stepsRow'),lb=document.getElementById('progressLabel');
   sr.innerHTML='';
   ['Registro','Pre-test','Resultado','Módulos','Post-test','Certificado'].forEach((l,i)=>{
     const d=document.createElement('div');
     d.className='step-dot'+(i<currentScreen?' done':i===currentScreen?' active':'');
     sr.appendChild(d);
   });
-  lb.textContent=['Registro','Pre-test','Resultado','Módulos','Post-test','Certificado'][currentScreen]||'';
-}
+  lb.textContent=['Registro','Pre-test','Resultado','Módulos','Post-test','Certificado'][currentScreen]||'';}
 
 function showScreen(n){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('s'+n).classList.add('active');
-  currentScreen=n; updateProgress();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  currentScreen=n;updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});}
 
 window.onload=()=>{
   setTimeout(()=>{
@@ -586,18 +563,14 @@ window.onload=()=>{
     setTimeout(()=>{
       document.getElementById('splash').style.display='none';
       document.getElementById('app').style.display='block';
-      updateProgress();
-    },600);
-  },1800);
+      updateProgress();},600);},1800);
   window.addEventListener('orientationchange',checkOrientation);
   window.addEventListener('resize',checkOrientation);
-  dictRender(DICT_TERMINOS);
-};
+  dictRender(DICT_TERMINOS);};
 
 function checkOrientation(){
   const h=document.getElementById('giro-hint');
-  h.style.display=(window.innerWidth<500&&window.innerHeight>window.innerWidth)?'block':'none';
-}
+  h.style.display=(window.innerWidth<500&&window.innerHeight>window.innerWidth)?'block':'none';}
 
 function iniciarPretest(){
   const nombre=document.getElementById('reg-nombre').value.trim();
@@ -606,18 +579,14 @@ function iniciarPretest(){
   userData={nombre,cargo,
     email:document.getElementById('reg-email').value.trim()||'-',
     servicio:document.getElementById('reg-servicio').value.trim()||'-',
-    fechaInicio:new Date().toLocaleString('es-CO')
-  };
+    fechaInicio:new Date().toLocaleString('es-CO')};
   renderQuiz('pretest-container',PREGUNTAS_PRETEST,pretestAnswers,'btn-submit-pretest');
-  showScreen(1);
-}
+  showScreen(1);}
 
 function renderQuiz(containerId,preguntas,answersObj,btnId){
-  const c=document.getElementById(containerId);
-  c.innerHTML='';
+  const c=document.getElementById(containerId);c.innerHTML='';
   preguntas.forEach((p,idx)=>{
-    const div=document.createElement('div');
-    div.className='pregunta-card';
+    const div=document.createElement('div');div.className='pregunta-card';
     div.innerHTML=`<div class="pregunta-num">Pregunta ${idx+1} de ${preguntas.length}</div>
       <div class="pregunta-texto">${p.texto}</div>
       <div class="opciones">${p.opciones.map((o,i)=>`
@@ -626,57 +595,41 @@ function renderQuiz(containerId,preguntas,answersObj,btnId){
           <div class="opcion-radio"></div><span>${o}</span>
         </label>`).join('')}</div>
       <div id="feedback-${p.id}" class="feedback" style="display:none"></div>`;
-    c.appendChild(div);
-  });
-}
+    c.appendChild(div);});}
 
 function selectOpcion(pregId,val,containerId,btnId){
   const preguntas=containerId.includes('pretest')?PREGUNTAS_PRETEST:PREGUNTAS_POSTEST;
   const answersObj=containerId.includes('pretest')?pretestAnswers:postestAnswers;
   answersObj[pregId]=parseInt(val);
-  preguntas.find(x=>x.id===pregId).opciones.forEach((_,i)=>{
-    document.getElementById('lbl-'+pregId+'-'+i).classList.remove('selected');
-  });
+  preguntas.find(x=>x.id===pregId).opciones.forEach((_,i)=>{document.getElementById('lbl-'+pregId+'-'+i).classList.remove('selected');});
   document.getElementById('lbl-'+pregId+'-'+val).classList.add('selected');
-  if(Object.keys(answersObj).length===preguntas.length)
-    document.getElementById(btnId).disabled=false;
-}
+  if(Object.keys(answersObj).length===preguntas.length)document.getElementById(btnId).disabled=false;}
 
 function submitPretest(){
-  let c=0;
-  PREGUNTAS_PRETEST.forEach(p=>{if(pretestAnswers[p.id]===p.correcta)c++;});
+  let c=0;PREGUNTAS_PRETEST.forEach(p=>{if(pretestAnswers[p.id]===p.correcta)c++;});
   pretestScore=Math.round((c/PREGUNTAS_PRETEST.length)*100);
   document.getElementById('resultado-pretest').innerHTML=`
     <div class="resultado-grande">
-      <div class="score-circle ${pretestScore>=60?'':'fail'}">
-        <div class="score-num">${pretestScore}%</div>
-        <div class="score-label">${c}/${PREGUNTAS_PRETEST.length}</div>
-      </div>
+      <div class="score-circle ${pretestScore>=60?'':' fail'}">
+        <div class="score-num">${pretestScore}%</div><div class="score-label">${c}/${PREGUNTAS_PRETEST.length}</div></div>
       <h3 style="color:var(--azul);font-family:'DM Serif Display',serif;font-size:1.2rem;margin-bottom:8px;">
-        ${pretestScore>=60?'¡Buen conocimiento inicial!':'Oportunidad de aprendizaje'}
-      </h3>
+        ${pretestScore>=60?'¡Buen conocimiento inicial!':'Oportunidad de aprendizaje'}</h3>
       <p style="color:var(--gris-texto);font-size:0.87rem;max-width:380px;margin:0 auto;">
-        ${pretestScore>=60?'Tienes base sólida. Los módulos actualizarán tus conocimientos con los lineamientos 2026.':'Este resultado es solo diagnóstico. Los módulos te darán el conocimiento para aprobar el post-test.'}
-      </p>
+        ${pretestScore>=60?'Tienes base sólida. Los módulos actualizarán tus conocimientos con los lineamientos 2026.':'Este resultado es solo diagnóstico. Los módulos te darán el conocimiento para aprobar el post-test.'}</p>
     </div>`;
-  showScreen(2);
-}
+  showScreen(2);}
 
 function goModulos(){buildModNav();showScreen(3);showMod(1);}
 
 function buildModNav(){
-  const nav=document.getElementById('modNav');
-  nav.innerHTML='';
+  const nav=document.getElementById('modNav');nav.innerHTML='';
   ['','Situación Epi','Clínica','Definiciones','Laboratorio','Manejo','PAI'].forEach((n,i)=>{
     if(!i)return;
     const b=document.createElement('button');
     b.className='mod-btn'+(i===currentMod?' active':'')+(modsDone.includes(i)?' done':'');
-    b.textContent=i+'. '+n;
-    b.id='modBtn'+i;
+    b.textContent=i+'. '+n;b.id='modBtn'+i;
     b.onclick=(()=>{const mi=i;return ()=>showMod(mi);})();
-    nav.appendChild(b);
-  });
-}
+    nav.appendChild(b);});}
 
 function showMod(n){
   document.querySelectorAll('.mod-content').forEach(m=>m.style.display='none');
@@ -684,64 +637,46 @@ function showMod(n){
   document.querySelectorAll('.mod-btn').forEach(b=>b.classList.remove('active'));
   const btn=document.getElementById('modBtn'+n);
   if(btn){btn.classList.add('active');btn.classList.add('done');}
-  currentMod=n;
-  if(!modsDone.includes(n))modsDone.push(n);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  currentMod=n;if(!modsDone.includes(n))modsDone.push(n);
+  window.scrollTo({top:0,behavior:'smooth'});}
 
 function nextMod(n){if(n<1||n>6)return;buildModNav();showMod(n);}
 
-function goPostest(){
-  renderQuiz('postest-container',PREGUNTAS_POSTEST,postestAnswers,'btn-submit-postest');
-  showScreen(4);
-}
+function goPostest(){renderQuiz('postest-container',PREGUNTAS_POSTEST,postestAnswers,'btn-submit-postest');showScreen(4);}
 
 function submitPostest(){
   let c=0;
   PREGUNTAS_POSTEST.forEach(p=>{
-    const sel=postestAnswers[p.id],ok=sel===p.correcta;
-    if(ok)c++;
+    const sel=postestAnswers[p.id],ok=sel===p.correcta;if(ok)c++;
     p.opciones.forEach((_,i)=>{
-      const lbl=document.getElementById('lbl-'+p.id+'-'+i);
-      if(!lbl)return;
+      const lbl=document.getElementById('lbl-'+p.id+'-'+i);if(!lbl)return;
       lbl.classList.remove('selected');
       if(i===p.correcta)lbl.classList.add('correct');
-      else if(i===sel&&!ok)lbl.classList.add('wrong');
-    });
+      else if(i===sel&&!ok)lbl.classList.add('wrong');});
     const fb=document.getElementById('feedback-'+p.id);
-    if(fb){fb.style.display='block';fb.className='feedback '+(ok?'ok':'no');fb.innerHTML=(ok?'✓ Correcto: ':'✗ Incorrecto: ')+p.feedback;}
-  });
+    if(fb){fb.style.display='block';fb.className='feedback '+(ok?'ok':'no');fb.innerHTML=(ok?'✓ Correcto: ':'✗ Incorrecto: ')+p.feedback;}});
   document.getElementById('btn-submit-postest').disabled=true;
   postestScore=Math.round((c/PREGUNTAS_POSTEST.length)*100);
   const aprobado=postestScore>=80;
   document.getElementById('resultado-postest').innerHTML=`
     <div class="resultado-grande">
-      <div class="score-circle ${aprobado?'':'fail'}">
-        <div class="score-num">${postestScore}%</div>
-        <div class="score-label">${c}/${PREGUNTAS_POSTEST.length}</div>
-      </div>
+      <div class="score-circle ${aprobado?'':' fail'}">
+        <div class="score-num">${postestScore}%</div><div class="score-label">${c}/${PREGUNTAS_POSTEST.length}</div></div>
       <h3 style="color:var(--azul);font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:8px;">
-        ${aprobado?'¡Capacitación Aprobada!':'Capacitación No Aprobada'}
-      </h3>
+        ${aprobado?'¡Capacitación Aprobada!':'Capacitación No Aprobada'}</h3>
       <p style="color:var(--gris-texto);font-size:0.87rem;max-width:420px;margin:0 auto 14px;">
         ${aprobado?'Excelente. Has superado el umbral del 80%. Ahora firma digitalmente para completar y registrar tu certificado.':
-        'Obtuviste '+postestScore+'%. Se requiere mínimo 80%. Revisa los módulos e intenta nuevamente.'}
-      </p>
+        'Obtuviste '+postestScore+'%. Se requiere mínimo 80%. Revisa los módulos e intenta nuevamente.'}</p>
       ${aprobado?
         '<button class="btn btn-success" onclick="abrirFirma()" style="margin-top:4px;">&#9997; Firmar y obtener certificado</button>':
         '<div class="btn-row" style="justify-content:center;margin-top:8px;"><button class="btn btn-secondary" onclick="volverModulos()">Repasar módulos</button><button class="btn btn-primary" onclick="reiniciarPostest()">Intentar de nuevo</button></div>'}
     </div>`;
-  showScreen(5);
-}
+  showScreen(5);}
 
 function volverModulos(){buildModNav();showScreen(3);showMod(1);}
 function reiniciarPostest(){postestAnswers={};renderQuiz('postest-container',PREGUNTAS_POSTEST,postestAnswers,'btn-submit-postest');showScreen(4);}
 
-/* =============================================
-   FIRMA DIGITAL
-============================================= */
 let firmaCtx,firmaPintando=false,firmaUltX=0,firmaUltY=0;
-
 function abrirFirma(){
   checkOrientation();
   document.getElementById('firma-overlay').classList.add('show');
@@ -754,12 +689,9 @@ function abrirFirma(){
   canvas.onmouseup=canvas.onmouseleave=()=>firmaPintando=false;
   canvas.ontouchstart=e=>{e.preventDefault();firmaPintando=true;const r=canvas.getBoundingClientRect();firmaUltX=e.touches[0].clientX-r.left;firmaUltY=e.touches[0].clientY-r.top;};
   canvas.ontouchmove=e=>{e.preventDefault();if(!firmaPintando)return;const r=canvas.getBoundingClientRect();const x=e.touches[0].clientX-r.left,y=e.touches[0].clientY-r.top;firmaCtx.beginPath();firmaCtx.moveTo(firmaUltX,firmaUltY);firmaCtx.lineTo(x,y);firmaCtx.stroke();firmaUltX=x;firmaUltY=y;};
-  canvas.ontouchend=()=>firmaPintando=false;
-}
+  canvas.ontouchend=()=>firmaPintando=false;}
 
-function limpiarFirma(){
-  firmaCtx.clearRect(0,0,document.getElementById('firmaCanvas').width,document.getElementById('firmaCanvas').height);
-}
+function limpiarFirma(){firmaCtx.clearRect(0,0,document.getElementById('firmaCanvas').width,document.getElementById('firmaCanvas').height);}
 
 function confirmarFirma(){
   const canvas=document.getElementById('firmaCanvas');
@@ -767,9 +699,7 @@ function confirmarFirma(){
   if(!Array.from(px).some((v,i)=>i%4===3&&v>0)){alert('Por favor realiza tu firma antes de confirmar.');return;}
   firmaDataURL=canvas.toDataURL('image/png');
   document.getElementById('firma-overlay').classList.remove('show');
-  generarCertificado();
-  enviarAGitHub();
-}
+  generarCertificado();enviarAGitHub();}
 
 function generarCertificado(){
   const fecha=new Date().toLocaleDateString('es-CO',{day:'2-digit',month:'long',year:'numeric'});
@@ -796,12 +726,8 @@ function generarCertificado(){
         <button class="btn btn-secondary" onclick="window.print()" style="padding:10px 20px;font-size:0.86rem;">&#128438; Imprimir certificado</button>
         <button class="btn btn-primary" onclick="location.reload()" style="padding:10px 20px;font-size:0.86rem;">&#8635; Nueva evaluación</button>
       </div>
-    </div>`);
-}
+    </div>`);}
 
-/* =============================================
-   ENVÍO DE DATOS
-============================================= */
 async function enviarAGitHub(){
   const registros=JSON.parse(localStorage.getItem('sarampion_reg')||'[]');
   const registro={id:Date.now(),nombre:userData.nombre,cargo:userData.cargo,servicio:userData.servicio,
@@ -809,151 +735,73 @@ async function enviarAGitHub(){
     aprobado:postestScore>=80?'SI':'NO',firma:firmaDataURL?'SI':'NO'};
   registros.push(registro);
   localStorage.setItem('sarampion_reg',JSON.stringify(registros));
-  enviarAGoogleForms();
-}
+  enviarAGoogleForms();}
 
 function enviarAGoogleForms(){
   try{
     const FORM_ID='1FAIpQLSdPRMxG5Zf0SyIPs9sAth1Ncr9F8LqgFtLIufJsTKaIbUZ5OA';
     const url='https://docs.google.com/forms/d/e/'+FORM_ID+'/formResponse';
-    const iframe=document.createElement('iframe');
-    iframe.style.display='none';
-    iframe.name='gforms_hidden';
-    document.body.appendChild(iframe);
-    const form=document.createElement('form');
-    form.method='POST';
-    form.action=url;
-    form.target='gforms_hidden';
-    const campos={
-      'entry.276763522':userData.nombre||'',
-      'entry.2141152544':userData.cargo||'',
-      'entry.370652896':userData.servicio||'',
-      'entry.465622796':userData.email||'',
-      'entry.167916670':userData.fechaInicio||'',
-      'entry.1370402360':pretestScore+'%',
-      'entry.699904085':postestScore+'%',
-      'entry.2126902312':postestScore>=80?'SI':'NO',
-      'entry.504292367':firmaDataURL?'SI':'NO'
-    };
-    Object.entries(campos).forEach(([key,val])=>{
-      const input=document.createElement('input');
-      input.type='hidden';input.name=key;input.value=val;
-      form.appendChild(input);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(()=>{
-      try{document.body.removeChild(form);document.body.removeChild(iframe);}catch(e){}
-    },3000);
-    console.log('Registro enviado a Google Forms');
-  }catch(e){console.error('Error enviando a Google Forms:',e);}
-}
+    const iframe=document.createElement('iframe');iframe.style.display='none';iframe.name='gforms_hidden';document.body.appendChild(iframe);
+    const form=document.createElement('form');form.method='POST';form.action=url;form.target='gforms_hidden';
+    const campos={'entry.276763522':userData.nombre||'','entry.2141152544':userData.cargo||'','entry.370652896':userData.servicio||'','entry.465622796':userData.email||'','entry.167916670':userData.fechaInicio||'','entry.1370402360':pretestScore+'%','entry.699904085':postestScore+'%','entry.2126902312':postestScore>=80?'SI':'NO','entry.504292367':firmaDataURL?'SI':'NO'};
+    Object.entries(campos).forEach(([key,val])=>{const input=document.createElement('input');input.type='hidden';input.name=key;input.value=val;form.appendChild(input);});
+    document.body.appendChild(form);form.submit();
+    setTimeout(()=>{try{document.body.removeChild(form);document.body.removeChild(iframe);}catch(e){}},3000);
+  }catch(e){console.error('Error enviando a Google Forms:',e);}}
 
-/* =============================================
-   PANEL ADMINISTRADOR
-============================================= */
 function toggleAdmin(){
   const panel=document.getElementById('admin-panel');
   if(panel.classList.contains('show')){panel.classList.remove('show');return;}
   if(!adminUnlocked){
     const pwd=prompt('Contraseña de administrador:');
     if(pwd!==GH.ADMIN_PASS){alert('Contraseña incorrecta.');return;}
-    if(!GH.TOKEN){
-      const tok=prompt('Token de GitHub (se usará solo en esta sesión):');
-      if(!tok||!tok.startsWith('ghp_')){alert('Token inválido. Debe comenzar con ghp_');return;}
-      GH.TOKEN=tok.trim();
-    }
-    adminUnlocked=true;
-  }
-  cargarAdmin();panel.classList.add('show');
-}
+    if(!GH.TOKEN){const tok=prompt('Token de GitHub (se usará solo en esta sesión):');if(!tok||!tok.startsWith('ghp_')){alert('Token inválido. Debe comenzar con ghp_');return;}GH.TOKEN=tok.trim();}
+    adminUnlocked=true;}
+  cargarAdmin();panel.classList.add('show');}
 
 function cargarAdmin(){
   const data=JSON.parse(localStorage.getItem('sarampion_reg')||'[]');
-  const stats=document.getElementById('admin-stats');
-  const tbody=document.getElementById('admin-tbody');
-  if(!data.length){
-    tbody.innerHTML='<tr><td colspan="11" style="text-align:center;color:var(--gris-texto);padding:20px;">Sin registros locales aún.</td></tr>';
-    stats.innerHTML='';return;
-  }
+  const stats=document.getElementById('admin-stats'),tbody=document.getElementById('admin-tbody');
+  if(!data.length){tbody.innerHTML='<tr><td colspan="11" style="text-align:center;color:var(--gris-texto);padding:20px;">Sin registros locales aún.</td></tr>';stats.innerHTML='';return;}
   const aprobados=data.filter(d=>d.aprobado==='SI').length;
   const promPre=Math.round(data.reduce((a,b)=>a+(b.pretest||0),0)/data.length);
   const promPost=Math.round(data.reduce((a,b)=>a+(b.postest||0),0)/data.length);
-  stats.innerHTML=`
-    <div class="info-item"><div class="info-label">Total participantes</div><div class="info-val">${data.length}</div></div>
-    <div class="info-item"><div class="info-label">Aprobados</div><div class="info-val" style="color:var(--verde)">${aprobados} (${data.length?Math.round(aprobados/data.length*100):0}%)</div></div>
-    <div class="info-item"><div class="info-label">Promedio Pre-test</div><div class="info-val">${promPre}%</div></div>
-    <div class="info-item"><div class="info-label">Promedio Post-test</div><div class="info-val">${promPost}%</div></div>`;
-  tbody.innerHTML=data.map((r,i)=>`<tr>
-    <td>${i+1}</td><td><strong>${r.nombre||'-'}</strong></td><td>${r.cargo||'-'}</td>
-    <td>${r.servicio||'-'}</td><td>${r.email||'-'}</td>
-    <td style="white-space:nowrap">${r.fecha||'-'}</td>
-    <td>${r.pretest||0}%</td><td>${r.postest||0}%</td>
-    <td><span class="${r.aprobado==='SI'?'badge-si':'badge-no'}">${r.aprobado||'-'}</span></td>
-    <td>${r.firma||'-'}</td>
-    <td>${r.github_url?'<a href="'+r.github_url+'" target="_blank" style="color:var(--azul-medio);font-size:0.75rem;">#'+r.github_issue+'</a>':'Local'}</td>
-  </tr>`).join('');
-}
+  stats.innerHTML=`<div class="info-item"><div class="info-label">Total participantes</div><div class="info-val">${data.length}</div></div><div class="info-item"><div class="info-label">Aprobados</div><div class="info-val" style="color:var(--verde)">${aprobados} (${data.length?Math.round(aprobados/data.length*100):0}%)</div></div><div class="info-item"><div class="info-label">Promedio Pre-test</div><div class="info-val">${promPre}%</div></div><div class="info-item"><div class="info-label">Promedio Post-test</div><div class="info-val">${promPost}%</div></div>`;
+  tbody.innerHTML=data.map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r.nombre||''}</strong></td><td>${r.cargo||''}</td><td>${r.servicio||''}</td><td>${r.email||''}</td><td style="white-space:nowrap">${r.fecha||''}</td><td>${r.pretest||0}%</td><td>${r.postest||0}%</td><td><span class="${r.aprobado==='SI'?'badge-si':'badge-no'}">${r.aprobado||'-'}</span></td><td>${r.firma||'-'}</td><td>${r.github_url?'<a href="'+r.github_url+'" target="_blank" style="color:var(--azul-medio);font-size:0.75rem;">#'+r.github_issue+'</a>':'Local'}</td></tr>`).join('');}
 
 async function sincronizarGitHub(){
   const ind=document.getElementById('sync-indicator');
   ind.className='sync-status sync-pending';ind.textContent='Sincronizando...';
-  if(!GH.TOKEN||GH.TOKEN==='TU_TOKEN_AQUI'){
-    ind.className='sync-status sync-error';ind.textContent='Token no configurado';
-    alert('Configura el token de GitHub en el panel admin.');return;
-  }
+  if(!GH.TOKEN||GH.TOKEN==='TU_TOKEN_AQUI'){ind.className='sync-status sync-error';ind.textContent='Token no configurado';alert('Configura el token de GitHub en el panel admin.');return;}
   try{
-    const res=await fetch('https://api.github.com/repos/'+GH.OWNER+'/'+GH.REPO+'/issues?state=all&per_page=100&labels=capacitacion-2026',{
-      headers:{'Authorization':'token '+GH.TOKEN,'Accept':'application/vnd.github.v3+json'}
-    });
+    const res=await fetch('https://api.github.com/repos/'+GH.OWNER+'/'+GH.REPO+'/issues?state=all&per_page=100&labels=capacitacion-2026',{headers:{'Authorization':'token '+GH.TOKEN,'Accept':'application/vnd.github.v3+json'}});
     if(res.ok){
       const issues=await res.json();
       ind.className='sync-status sync-ok';ind.textContent='Sincronizado - '+issues.length+' registros';
       if(issues.length){
         const aprobados=issues.filter(i=>i.labels.some(l=>l.name==='aprobado')).length;
-        document.getElementById('admin-stats').innerHTML=`
-          <div class="info-item"><div class="info-label">Total en GitHub</div><div class="info-val">${issues.length}</div></div>
-          <div class="info-item"><div class="info-label">Aprobados</div><div class="info-val" style="color:var(--verde)">${aprobados} (${Math.round(aprobados/issues.length*100)}%)</div></div>`;
-        document.getElementById('admin-tbody').innerHTML=issues.map((issue,i)=>{
-          const aprobado=issue.labels.some(l=>l.name==='aprobado');
-          return '<tr><td>'+(i+1)+'</td><td colspan="8" style="font-size:0.8rem;">'+issue.title+'</td><td><span class="'+(aprobado?'badge-si':'badge-no')+'">'+(aprobado?'SI':'NO')+'</span></td><td><a href="'+issue.html_url+'" target="_blank" style="color:var(--azul-medio);font-size:0.75rem;">#'+issue.number+'</a></td></tr>';
-        }).join('');
-      }
+        document.getElementById('admin-stats').innerHTML=`<div class="info-item"><div class="info-label">Total en GitHub</div><div class="info-val">${issues.length}</div></div><div class="info-item"><div class="info-label">Aprobados</div><div class="info-val" style="color:var(--verde)">${aprobados} (${Math.round(aprobados/issues.length*100)}%)</div></div>`;
+        document.getElementById('admin-tbody').innerHTML=issues.map((issue,i)=>{const aprobado=issue.labels.some(l=>l.name==='aprobado');return '<tr><td>'+(i+1)+'</td><td colspan="8" style="font-size:0.8rem;">'+issue.title+'</td><td><span class="'+(aprobado?'badge-si':'badge-no')+'">'+( aprobado?'SI':'NO')+'</span></td><td><a href="'+issue.html_url+'" target="_blank" style="color:var(--azul-medio);font-size:0.75rem;">#'+issue.number+'</a></td></tr>';}).join('');}
     }else{ind.className='sync-status sync-error';ind.textContent='Error '+res.status;}
-  }catch(e){ind.className='sync-status sync-error';ind.textContent='Error de conexión';}
-}
+  }catch(e){ind.className='sync-status sync-error';ind.textContent='Error de conexión';}}
 
 function exportXLS(){
   const data=JSON.parse(localStorage.getItem('sarampion_reg')||'[]');
   if(!data.length){alert('No hay datos locales para exportar.\nUsa Sincronizar GitHub para cargar los registros.');return;}
   const BOM='\uFEFF';
   let csv='N,Nombre,Cargo,Servicio,Email,Fecha,Pre-test (%),Post-test (%),Aprobado,Firma,GitHub Issue\n';
-  data.forEach((r,i)=>{
-    csv+=(i+1)+',"'+(r.nombre||'')+'","'+(r.cargo||'')+'","'+(r.servicio||'')+'","'+(r.email||'')+'","'+(r.fecha||'')+'",'+
-    (r.pretest||0)+','+(r.postest||0)+',"'+(r.aprobado||'')+'","'+(r.firma||'')+'","'+(r.github_url||'Local')+'"\n';
-  });
+  data.forEach((r,i)=>{csv+=(i+1)+',"'+( r.nombre||'')+'","'+( r.cargo||'')+'","'+( r.servicio||'')+'","'+( r.email||'')+'","'+( r.fecha||'')+'",['+(r.pretest||0)+','+(r.postest||0)+',"'+( r.aprobado||'')+'","'+( r.firma||'')+'","'+( r.github_url||'Local')+'"\n';});
   const blob=new Blob([BOM+csv],{type:'text/csv;charset=utf-8'});
   const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;a.download='Capacitacion_Sarampion_'+new Date().toISOString().slice(0,10)+'.csv';
-  a.click();URL.revokeObjectURL(url);
-}
+  const a=document.createElement('a');a.href=url;a.download='Capacitacion_Sarampion_'+new Date().toISOString().slice(0,10)+'.csv';a.click();URL.revokeObjectURL(url);}
 
-/* =============================================
-   DICCIONARIO FLOTANTE
-============================================= */
-let dictTabActivo='all', dictAbierto=false;
-
+let dictTabActivo='all',dictAbierto=false;
 function dictRender(lista){
-  const body=document.getElementById('dict-body');
-  const counter=document.getElementById('dict-counter');
+  const body=document.getElementById('dict-body'),counter=document.getElementById('dict-counter');
   if(counter)counter.textContent=lista.length+' término'+(lista.length!==1?'s':'');
-  if(!lista.length){
-    body.innerHTML='<div class="dict-empty"><span>&#128269;</span>Sin resultados para esa búsqueda.</div>';
-    return;
-  }
+  if(!lista.length){body.innerHTML='<div class="dict-empty"><span>&#128269;</span>Sin resultados para esa búsqueda.</div>';return;}
   body.innerHTML=lista.map((t,i)=>`
-    <div class="dentry" onclick="dictToggle(${i},'${t.s.replace(/'/g,"\\'")}')">
+    <div class="dentry" onclick="dictToggle(${i})">
       <div class="dentry-top">
         <span class="dsigla">${t.s}</span>
         <span class="dbadge ${t.t==='inst'?'dbadge-inst':'dbadge-clin'}">${t.t==='inst'?'Institucional':'Clínico'}</span>
@@ -961,57 +809,41 @@ function dictRender(lista){
       </div>
       <div class="dnombre">${t.n}</div>
       <div class="ddef" id="ddef-${i}">${t.d}</div>
-    </div>`).join('');
-}
+    </div>`).join('');}
 
 function dictToggle(i){
-  const el=document.getElementById('ddef-'+i);
-  const ar=document.getElementById('darr-'+i);
+  const el=document.getElementById('ddef-'+i),ar=document.getElementById('darr-'+i);
   if(!el||!ar)return;
   const o=el.classList.toggle('show');
-  ar.innerHTML=o?'&#9660;':'&#9658;';
-  ar.classList.toggle('open',o);
-}
+  ar.innerHTML=o?'&#9660;':'&#9658;';ar.classList.toggle('open',o);}
 
 function dictTab(tab,btn){
   dictTabActivo=tab;
   document.querySelectorAll('.dtab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  dictFilter();
-}
+  btn.classList.add('active');dictFilter();}
 
 function dictFilter(){
   const q=document.getElementById('dict-search-input').value.toLowerCase().trim();
   let lista=DICT_TERMINOS;
   if(dictTabActivo!=='all')lista=lista.filter(t=>t.t===dictTabActivo);
-  if(q)lista=lista.filter(t=>
-    t.s.toLowerCase().includes(q)||
-    t.n.toLowerCase().includes(q)||
-    t.d.toLowerCase().includes(q)
-  );
-  dictRender(lista);
-}
+  if(q)lista=lista.filter(t=>t.s.toLowerCase().includes(q)||t.n.toLowerCase().includes(q)||t.d.toLowerCase().includes(q));
+  dictRender(lista);}
 
 function toggleDiccionario(){
   dictAbierto=!dictAbierto;
   document.getElementById('dict-panel').classList.toggle('open',dictAbierto);
-  if(dictAbierto){
-    setTimeout(()=>{
-      const inp=document.getElementById('dict-search-input');
-      if(inp)inp.focus();
-    },380);
-  }
-}
+  if(dictAbierto)setTimeout(()=>{const inp=document.getElementById('dict-search-input');if(inp)inp.focus();},380);}
 
-// Cerrar diccionario con Escape
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&dictAbierto)toggleDiccionario();
-});
-
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dictAbierto)toggleDiccionario();});
 setTimeout(()=>updateProgress(),2200);
 </script>
 </body>
 </html>
-  
 
+
+
+   
  
+
+
+  
